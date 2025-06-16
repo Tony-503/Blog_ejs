@@ -1,38 +1,36 @@
 <%- include("partials/header.ejs") %>
 
-<div class="container d-flex justify-content-center align-items-center min-vh-100 w-100 ">
-  <div class="row w-100 hv-100">
-      <!-- Form Section -->
-      <div class="col-lg-6 col-md-12 d-flex justify-content-center align-items-center">
-          <form class="form-container w-100" action="/submit" method="POST">
-              <div class="mb-3">
-                  <input type="text" class="form-control" name="title" placeholder="Title"/>
-              </div>
-              <div class="mb-3">
-                  <textarea class="form-control" name="content" placeholder="Write your content here"></textarea>
-              </div>
-              <input type="submit" name="Submit" value="Publish" class="btn btn-primary form-control"/>
-          </form>
-      </div>
 
-      <!-- Posts Section -->
-      <div class="col-lg-6 col-md-12 d-flex justify-content-center align-items-center">
-          <div class="posts-container w-100 ">
-              <% if (locals.name) { %>
-                  <div>
-                      <%- include("partials/post.ejs") %>
-                  </div>
-              <% } else { %>
-                  <div>
-                      <h1>No Recent Post</h1>
-                  </div>
-              <% } %>
-          </div>
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="row w-100 gy-5">
+    <!-- Form Section -->
+    <div class="col-lg-6 col-md-12 d-flex justify-content-center align-items-center">
+      <form class="form-container w-100" action="/submit" method="POST">
+        <h2 class="text-center mb-4">🚀 Launch a New Post</h2>
+        <div class="mb-3">
+          <input type="text" class="form-control" name="title" placeholder="Post Title" required />
+        </div>
+        <div class="mb-3">
+          <textarea class="form-control" name="content" placeholder="Type your message to the galaxy..." rows="6" required></textarea>
+        </div>
+        <input type="submit" name="Submit" value="Publish" class="btn btn-primary form-control" />
+      </form>
+    </div>
+
+    <!-- Posts Section -->
+    <div class="col-lg-6 col-md-12 d-flex justify-content-center align-items-center">
+      <div class="posts-container w-100">
+        <h2 class="text-center mb-4">🛰 Recent Transmissions</h2>
+        <% if (locals.name) { %>
+          <%- include("partials/post.ejs") %>
+        <% } else { %>
+          <h1 class="text-center">No Recent Post</h1>
+        <% } %>
       </div>
+    </div>
   </div>
 </div>
 
 <%- include("partials/footer.ejs") %>
-
-
 

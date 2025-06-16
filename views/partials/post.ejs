@@ -1,22 +1,24 @@
-<div class="container mt-5 d-flex justify-content-center align-items-center">
-     <div class="col-md-8 card-container">
-         <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-             <div class="col p-4 d-flex flex-column position-static">
-                 <h3 class="mb-0"><%= name %></h3>
-                 <div class="mb-1 text-body-secondary">Nov 12</div>
-                 <p class="card-text mb-auto"><%= text %></p>
-                 <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                     <form action="/edit" method="POST">
-                         <input type="hidden" name="name" value="<%= name %>">
-                         <input type="hidden" name="text" value="<%= text %>">
-                         <button type="submit" class="btn btn-primary btn-lg px-4 me-md-2">Edit</button>
-                     </form>
-                     <form action="/delete" method="POST">
-                         <input type="hidden" name="name" value="<%= name %>">
-                         <button type="submit" class="btn btn-outline-secondary btn-lg px-4">Delete</button>
-                     </form>
-                 </div>
-             </div>
-         </div>
-     </div>
- </div>
+<div class="container mt-5 d-flex justify-content-center align-items-center min-vh-100 w-100">
+    <div class="col-md-8 card-container-alt">
+      <div class="row g-0 border-0 rounded overflow-hidden shadow-lg h-100 bg-transparent">
+        <div class="col p-4 d-flex flex-column position-static">
+          <h3 class="mb-0 text-light"><%= name %></h3>
+          <div class="post-date-alt mb-2">🕒 <span id="post-date"></span></div>
+          <p class="card-text mb-4"><%= text %></p>
+  
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <form action="/edit" method="POST" class="me-2">
+              <input type="hidden" name="name" value="<%= name %>">
+              <input type="hidden" name="text" value="<%= text %>">
+              <button type="submit" class="btn btn-primary btn-lg px-4">Edit</button>
+            </form>
+  
+            <form action="/delete" method="POST">
+              <input type="hidden" name="name" value="<%= name %>">
+              <button type="submit" class="btn btn-outline-secondary btn-lg px-4">Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
