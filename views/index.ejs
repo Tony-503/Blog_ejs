@@ -2,35 +2,48 @@
 
 
 
-<div class="container d-flex justify-content-center align-items-center min-vh-100">
-  <div class="row w-100 gy-5">
-    <!-- Form Section -->
-    <div class="col-lg-6 col-md-12 d-flex justify-content-center align-items-center">
-      <form class="form-container w-100" action="/submit" method="POST">
-        <h2 class="text-center mb-4">🚀 Launch a New Post</h2>
-        <div class="mb-3">
-          <input type="text" class="form-control" name="title" placeholder="Post Title" required />
+<div class="hero-section position-relative">
+  <div class="floating-elements"></div>
+  <div class="container">
+    <div class="row g-4 align-items-stretch">
+      <!-- Form Section -->
+      <div class="col-lg-6 col-md-12">
+        <div class="form-container h-100 d-flex flex-column justify-content-center">
+          <h2 class="section-title text-center">🚀 Launch a New Post</h2>
+          <form action="/submit" method="POST" class="flex-grow-1 d-flex flex-column justify-content-center">
+            <div class="mb-4">
+              <input type="text" class="form-control" name="title" placeholder="✍️ Enter your amazing title..." required />
+            </div>
+            <div class="mb-4">
+              <textarea class="form-control" name="content" placeholder="📝 Share your thoughts with the world..." rows="6" required></textarea>
+            </div>
+            <input type="submit" name="Submit" value="Publish to Galaxy" class="btn btn-primary mt-auto" />
+          </form>
         </div>
-        <div class="mb-3">
-          <textarea class="form-control" name="content" placeholder="Type your message to the galaxy..." rows="6" required></textarea>
-        </div>
-        <input type="submit" name="Submit" value="Publish" class="btn btn-primary form-control" />
-      </form>
-    </div>
+      </div>
 
-    <!-- Posts Section -->
-    <div class="col-lg-6 col-md-12 d-flex justify-content-center align-items-center">
-      <div class="posts-container w-100">
-        <h2 class="text-center mb-4">🛰 Recent Transmissions</h2>
-        <% if (locals.name) { %>
-          <%- include("partials/post.ejs") %>
-        <% } else { %>
-          <h1 class="text-center">No Recent Post</h1>
-        <% } %>
+      <!-- Posts Section -->
+      <div class="col-lg-6 col-md-12">
+        <div class="posts-container h-100">
+          <h2 class="section-title text-center">🛰 Recent Transmissions</h2>
+          <div class="posts-content">
+            <% if (posts && posts.length > 0) { %>
+              <div class="posts-scroll">
+                <% posts.forEach(post => { %>
+                  <%- include("partials/post.ejs", { post: post }) %>
+                <% }); %>
+              </div>
+            <% } else { %>
+              <div class="no-posts">
+                <h3>🌌 The galaxy awaits your first transmission</h3>
+                <p>No posts yet - be the first to share something amazing!</p>
+              </div>
+            <% } %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
 <%- include("partials/footer.ejs") %>
 

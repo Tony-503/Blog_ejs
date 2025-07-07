@@ -1,24 +1,32 @@
-<div class="container mt-5 d-flex justify-content-center align-items-center min-vh-100 w-100">
-    <div class="col-md-8 card-container-alt">
-      <div class="row g-0 border-0 rounded overflow-hidden shadow-lg h-100 bg-transparent">
-        <div class="col p-4 d-flex flex-column position-static">
-          <h3 class="mb-0 text-light"><%= name %></h3>
-          <div class="post-date-alt mb-2">🕒 <span id="post-date"></span></div>
-          <p class="card-text mb-4"><%= text %></p>
+<div class="post-item">
+  <% if (post.updatedAt) { %>
+    <div class="updated-badge">Updated</div>
+  <% } %>
   
-          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-            <form action="/edit" method="POST" class="me-2">
-              <input type="hidden" name="name" value="<%= name %>">
-              <input type="hidden" name="text" value="<%= text %>">
-              <button type="submit" class="btn btn-primary btn-lg px-4">Edit</button>
-            </form>
+  <h3 class="post-item-title"><%= post.title %></h3>
   
-            <form action="/delete" method="POST">
-              <input type="hidden" name="name" value="<%= name %>">
-              <button type="submit" class="btn btn-outline-secondary btn-lg px-4">Delete</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="post-item-date">
+    <span>🕒</span>
+    <span><%= post.updatedAt || post.createdAt %></span>
   </div>
+  
+  <div class="post-item-content">
+    <%= post.content %>
+  </div>
+  
+  <div class="post-item-actions">
+    <form action="/edit" method="POST" class="d-inline">
+      <input type="hidden" name="id" value="<%= post.id %>">
+      <button type="submit" class="btn btn-post-action btn-post-edit">
+        ✏️ Edit
+      </button>
+    </form>
+    
+    <form action="/delete" method="POST" class="d-inline">
+      <input type="hidden" name="id" value="<%= post.id %>">
+      <button type="submit" class="btn btn-post-action btn-post-delete">
+        🗑️ Delete
+      </button>
+    </form>
+  </div>
+</div>
